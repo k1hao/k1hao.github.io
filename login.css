@@ -1,0 +1,138 @@
+@charset "utf-8";
+body{
+	margin:0;
+	padding:0;
+	font-family:sans-serif;
+	background:url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.soumeitu.com%2Fwp-content%2Fuploads%2F2020%2F07%2F5f16a9063ffd3.jpg&refer=http%3A%2F%2Fwww.soumeitu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626408040&t=55b6584575d8b994224fa89dac2c6f5e);
+	background-size:cover;
+	}
+.box{
+	position:absolute;
+	top:15%;
+	left:35%;
+	tranform:translate(-50%,-50%);
+	width:400px;
+	padding:40px;
+	
+	background:#99F;
+	box-sizing:border-box;
+	box-shadow:0px 15px 25px rgba(0,0,0,.5);
+	border-radius:10px;
+	}	
+.box h1{
+	margin:0 0 30px;
+	padding:0;
+	color:#fff;
+	text-align:center;
+	
+	}
+.box .inputBox{
+	position: relative;
+	}
+.box .inputBox input{
+	width:100%;
+	padding:10px 0;
+	font-size:16px;
+	color:#fff;
+	letter-spacing:1px;
+	margin-bottom:30px;
+	border:none;
+	border-bottom:1px solid #fff;
+	outline:none;
+	background:transparent; 
+	}
+.box .inputBox label{
+	position:absolute;
+	top:0;
+	left:0;
+	better-spacing:1px;
+	padding:10px 0;
+	font-size:16px;
+	color:#fff;
+	pointer-events:none;
+	transition:.5s;
+	}
+.box  .inputBox input:focus ~ label,
+.box  .inputBox input:valid ~ label{
+	top:-18px;
+	left:0;
+	color:#03C;
+	font-size:12px;
+	} 
+
+/*流彩按钮
+.sub{
+	position:absolute;
+	width:100px;
+	height:40px;
+	text-algin:center;
+	line-heught:60px;
+	color:#fff;
+	font-size:16px;
+	tetxt-transform:uppercase;
+	text-decoration:none;
+	font-family:sans-serif;
+	box-sizing:borser-box;
+	background:linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+	background-size:400%;
+	border-radius:30px;
+	z-index:1;
+	}
+.sub:hover{
+	animation:animate 8s linear infinite;
+	}
+@keyframes animate{
+		0%{
+			background-position:0%;
+			}
+		100%{
+			background-position:400%;
+			}
+	
+	}
+.sub:before{
+	content:'';
+	position:absolute;
+	top:-5px;
+	left:-5px;
+	right:-5px;
+	bottom:-5px;
+	z-index:1;
+	background:linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+	background-size:400%;
+	border-radius:30px;
+	filter:blur(20px);
+	}
+a:hover:before{
+	filter:blur(20px);
+	}
+*/
+.sub{
+	width:310px;
+	padding:10px 20px;
+	border:1px solid;
+	margin-top:30px;
+	color:#03e9f4;
+	border-radius:30px;
+	font-size:18px;
+	font-family:Tahoma, Geneva, sans-serif;
+	}
+.sub:hover{
+	background:#o3e9f4;
+	border-radius:2px;
+	box-shadow: 0 0 3px 0 #03e9f4,
+				0 0 3px 0 #03e9f4,
+				0 0 3px 0 #03e9f4,
+				0 0 3px 0 #03e9f4;
+	border-radius:30px;
+	}
+ #canvas {
+	margin:-65px 0 0 210px;
+	background:#fff;
+  	vertical-align: middle;
+  	box-sizing: border-box;
+    border: 1px solid #ddd;
+  	cursor: pointer;
+  }
+
+
