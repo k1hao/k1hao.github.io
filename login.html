@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Login</title>
+<style type="text/css">
+body,td,th {
+	font-size: 16px;
+}
+</style>
+	<link href="css/login.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+</head>
+	
+<body>
+	<form action="../LifeNotes/index.html" method="get">
+	<div class="box">
+    	<h1>Login</h1>
+        <form>
+        	<div class="inputBox">
+            	<input type="text" name="" required="" id="name">
+                <label>Username</label>
+            </div>
+            <div class="inputBox">
+            	<input type="password" name="" required="" id="pwd">
+                <label>Password</label>
+            </div>
+            <div class="inputBox">
+            	<input type="text" name="" required=""  id="yzcode">
+                <label>Captcha</label>
+                <canvas id="canvas" width="100" height="30"></canvas>
+            </div>
+            <button type="submit" class="sub" onclick="return yanZheng();">登陆
+            	<span></span><span></span>
+            	<span></span><span></span>
+            </button>
+        </form>
+    </div>
+<script>
+function checkName(){
+	    var name=document.getElementById("name").value;//获取文本框的值
+		if(name=="tutu"){
+			return true;
+			}
+		if(name=="ktt"){
+			return ture;
+			}
+		else{
+			if(name==""){
+				alert("请输入用户名");
+				return false;
+			}
+			else{
+				alert("用户名错误");
+				return false;
+				}
+			}
+	}
+function checkPwd(){
+	    var mm=document.getElementById("pwd").value;
+	    if( mm=="20200127"){
+			   return true; 
+			}
+		if(mm=="123456"){
+				return true;
+			}
+		else{
+			if(mm==""){
+				alert("请输入密码");
+				return false;
+			}
+			else{
+				alert("密码错误");
+				return false;
+				}
+			}
+	}  
+
+
+function yanZheng(){
+	   var  jieguo=true;
+	   //根据变量 jieguo的值为false还是true，来决定是否要提交表单。
+	   //设置jieguo的值为true，表明一般情况下可以提交表单。
+	   if( checkName() ){  //如果checkName的值为true
+		       jieguo=true;   //jieguo就为true
+		   }else{                 //否则
+			   jieguo=false; //jieguo就为false
+                return jieguo;//函数返回变量jieguo的值,并终止函数继续运行
+			}
+	   if( checkPwd()){ //如果密码验证通过
+		       jieguo=true; //jieguo就为true
+		   }else{
+			   jieguo=false; //jieguo就为false
+				 return jieguo;//函数返回变量jieguo的值,并终止函数继续运行
+			   }
+	/*if( $() ){ //如果验证通过
+		      jieguo=true;   //jieguo就为true
+		   }else{
+			  
+			    jieguo=false; //jieguo就为false
+				 
+				 return jieguo;//函数返回变量jieguo的值,并终止函数继续运行
+		   }*/
+	   
+	   return jieguo;//函数返回变量jieguo的值
+	}
+
+ $(function(){
+  var show_num = [];
+  draw(show_num);
+  $("#canvas").on('click',function(){
+   draw(show_num);
+  })
+  $(".sub").on('click',function(){
+   var val = $("#yzcode").val().toLowerCase();
+   var num = show_num.join("");
+   if(val==''){
+    alert('请输入验证码');
+	return false;
+   }else if(val == num){
+	   return true;
+    $(".input-val").val('');
+    // draw(show_num);
+   }else{
+    alert('验证码错误！请重新输入！');
+	return false;
+    $(".input-val").val('');
+    // draw(show_num);
+   }
+  })
+ }) 
+ //生成并渲染出验证码图形
+ function draw(show_num) {
+  var canvas_width=$('#canvas').width();
+  var canvas_height=$('#canvas').height();
+  var canvas = document.getElementById("canvas");//获取到canvas的对象，演员
+  var context = canvas.getContext("2d");//获取到canvas画图的环境，演员表演的舞台
+  canvas.width = canvas_width;
+  canvas.height = canvas_height;
+  var sCode = "a,b,c,d,e,f,g,h,i,j,k,m,n,p,q,r,s,t,u,v,w,x,y,z,A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0";
+  var aCode = sCode.split(",");
+  var aLength = aCode.length;//获取到数组的长度
+  for (var i = 0; i < 4; i++) { //这里的for循环可以控制验证码位数（如果想显示6位数，4改成6即可）
+   var j = Math.floor(Math.random() * aLength);//获取到随机的索引值
+   // var deg = Math.random() * 30 * Math.PI / 180;//产生0~30之间的随机弧度
+   var deg = Math.random() - 0.5; //产生一个随机弧度
+   var txt = aCode[j];//得到随机的一个内容
+   show_num[i] = txt.toLowerCase();
+   var x = 10 + i * 20;//文字在canvas上的x坐标
+   var y = 20 + Math.random() * 8;//文字在canvas上的y坐标
+   context.font = "bold 23px 微软雅黑";
+   context.translate(x, y);
+   context.rotate(deg);
+   context.fillStyle = randomColor();
+   context.fillText(txt, 0, 0);
+   context.rotate(-deg);
+   context.translate(-x, -y);
+  }
+  for (var i = 0; i <= 5; i++) { //验证码上显示线条
+   context.strokeStyle = randomColor();
+   context.beginPath();
+   context.moveTo(Math.random() * canvas_width, Math.random() * canvas_height);
+   context.lineTo(Math.random() * canvas_width, Math.random() * canvas_height);
+   context.stroke();
+  }
+  for (var i = 0; i <= 30; i++) { //验证码上显示小点
+   context.strokeStyle = randomColor();
+   context.beginPath();
+   var x = Math.random() * canvas_width;
+   var y = Math.random() * canvas_height;
+   context.moveTo(x, y);
+   context.lineTo(x + 1, y + 1);
+   context.stroke();
+  }
+ }
+ //得到随机的颜色值
+ function randomColor() {
+  var r = Math.floor(Math.random() * 256);
+  var g = Math.floor(Math.random() * 256);
+  var b = Math.floor(Math.random() * 256);
+  return "rgb(" + r + "," + g + "," + b + ")";
+ }
+</script>   
+<script>
+		
+</script> 
+</body>
+</html>
